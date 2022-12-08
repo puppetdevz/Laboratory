@@ -1,0 +1,10 @@
+{
+  "name": "MyLab",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://gitee.com/zhong-yuming/MyLab.git",
+  "author": "puppet <puppetdev@163.com>",
+  "license": "MIT",
+  "push": "deploy.py --push-src",
+  "pull": "deploy.py --pull-src"
+}
