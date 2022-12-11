@@ -9,6 +9,7 @@ import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import top.puppetdev.demo.demo01.UserService;
 import top.puppetdev.demo.demo02.FundsService;
+import top.puppetdev.demo.demo02.SendMsgThrowsAdvice;
 
 import java.lang.reflect.Method;
 
@@ -74,5 +75,16 @@ public class AopTest {
         FundsService proxy = (FundsService) proxyFactory.getProxy();
         proxy.recharge("木偶", 100);
         proxy.recharge("嘿嘿嘿", 1000);
+    }
+
+    @Test
+    public void testAfterThrowing() {
+        // 代理工厂
+        ProxyFactory proxyFactory = new ProxyFactory(new FundsService());
+        // 添加一个异常通知，发现异常之后发送消息给开发者尽快修复 bug
+        proxyFactory.addAdvice(new SendMsgThrowsAdvice());
+        // 通过代理工厂创建代理
+        FundsService proxy = (FundsService) proxyFactory.getProxy();
+        proxy.withdrawal("木偶", 2000);
     }
 }
