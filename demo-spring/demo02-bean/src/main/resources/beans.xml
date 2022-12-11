@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 通过 UserModel 的默认构造方法创建 UserModel 对象 -->
+    <bean id="beanCreatedByNoArgsConstructor" class="top.puppetdev.demo.UserModel"/>
+
+    <!-- 通过 UserModel 有参构造方法创建 UserModel 对象 -->
+    <bean id="beanCreatedByFullArgsConstructor" class="top.puppetdev.demo.UserModel">
+        <constructor-arg index="0" value="我是通过UserModel的有参方法构造的对象!"/>
+        <constructor-arg index="1" value="18"/>
+    </bean>
+
+    <!-- 通过工厂静态无参方法创建 bean 对象 -->
+    <!--<bean id="beanCreatedByNoArgsMethodOfStaticFactory" class="top.puppetdev.demo.UserStaticFactory"-->
+    <!--      factory-method="createNoArgsUser"/>-->
+
+    <!-- 通过工厂静态有参方法创建 bean 对象 -->
+    <!--<bean id="beanCreatedByFullArgsMethodOfStaticFactory" class="top.puppetdev.demo.UserStaticFactory"-->
+    <!--      factory-method="createFullArgsUser">-->
+    <!--    <constructor-arg index="0" value="通过工厂静态有参方法创建UerModel实例对象"/>-->
+    <!--    <constructor-arg index="1" value="18"/>-->
+    <!--</bean>-->
+
+    <!-- 定义一个工厂实例 -->
+    <!--<bean id="userFactory" class="top.puppetdev.demo.UserFactory"/>-->
+    <!-- 通过 userFactory 实例的无参 user 方法创建 UserModel 对象 -->
+    <!--<bean id="beanCreatedByBeanNoArgsMethod" factory-bean="userFactory" factory-method="createNoArgsUser"/>-->
+
+    <!-- 通过 userFactory 实例的全参 user 方法创建 UserModel 对象 -->
+    <!--<bean id="beanCreatedByBeanFullArgsMethod" factory-bean="userFactory" factory-method="createFullArgsUser">-->
+    <!--    <constructor-arg index="0" value="通过bean实例有参方法创建的UserModel实例对象"/>-->
+    <!--    <constructor-arg index="1" value="18"/>-->
+    <!--</bean>-->
+
+    <!-- 通过 FactoryBean 创建 UserModel 对象 -->
+    <bean id="beanCreatedByFactoryBean" class="top.puppetdev.demo.UserFactoryBean"/>
+
+    <!-- 单例 bean，scope 设置为 singleton -->
+    <bean id="singletonBean" class="top.puppetdev.demo.BeanScopeModel" scope="singleton">
+        <constructor-arg index="0" value="singleton"/>
+    </bean>
+
+    <!-- 多例 bean，scope 设置为 prototype-->
+    <bean id="prototypeBean" class="top.puppetdev.demo.BeanScopeModel" scope="prototype">
+        <constructor-arg index="0" value="prototype"/>
+    </bean>
+
+    <!-- 自定义 scope 的 bean -->
+    <bean id="customThreadBean" class="top.puppetdev.demo.BeanCustomScopeModel" scope="thread">
+        <constructor-arg index="0" value="thread"/>
+    </bean>
+</beans>

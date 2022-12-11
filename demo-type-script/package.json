@@ -1,0 +1,12 @@
+{
+  "name": "demo-type-script",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://gitee.com/zhong-yuming/demo-type-script.git",
+  "author": "puppet <puppetdev@163.com>",
+  "license": "GPL3.0",
+  "scripts": {
+    "push": "deploy.py --push-src",
+    "pull": "deploy.py --pull-src"
+  }
+}

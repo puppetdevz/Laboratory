@@ -1,0 +1,12 @@
+{
+  "name": "demo-go",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/puppetdevz/demo-go.git",
+  "author": "puppet <puppetdev@163.com>",
+  "license": "MIT",
+  "scripts": {
+    "push": "deploy.py --push-src",
+    "pull": "deploy.py --pull-src"
+  }
+}

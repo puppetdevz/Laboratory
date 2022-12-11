@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 定义一个bean
+         id：bean的唯一标识，通过这个标识可以从容器中获取到这个bean对象
+         class：这个bean的类型，需要用全类名
+    -->
+    <bean id="helloWorld" class="top.puppetdev.top.puppetdev.demo.HelloWorld" />
+
+    <!-- 通过 id 定义 bean 名称：userA -->
+    <bean id="userA" class="top.puppetdev.top.puppetdev.demo.UserModel"/>
+
+    <!-- 通过 name 定义bean 名称：userB -->
+    <bean name="userB" class="top.puppetdev.top.puppetdev.demo.UserModel"/>
+
+    <!-- id 为名称，name 为别名；bean 名称：userC，1个别名：[userC1] -->
+    <bean id="userC" name="userC1" class="top.puppetdev.top.puppetdev.demo.UserModel"/>
+
+    <!-- bean 名称：userD，多个别名：[userD1,userD2,userD3 -->
+    <bean id="userD" name="user4_1,user4_2;user4_3" class="top.puppetdev.top.puppetdev.demo.UserModel"/>
+
+    <!-- bean名称：userE，别名：[userE1,userE2,userE3] -->
+    <bean name="userE,userE1,userE2;userE3 userE4" class="top.puppetdev.top.puppetdev.demo.UserModel"/>
+
+    <!--未指定 id 和 name-->
+    <bean class="top.puppetdev.top.puppetdev.demo.UserModel" />
+    <bean class="top.puppetdev.top.puppetdev.demo.UserModel" />
+    <bean class="java.lang.String" />
+    <bean class="java.lang.String" />
+</beans>

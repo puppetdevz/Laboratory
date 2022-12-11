@@ -1,0 +1,12 @@
+{
+  "name": "demo-spring",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:puppetdevz/demo-spring.git",
+  "author": "puppet <puppetdev@163.com>",
+  "license": "MIT",
+  "scripts": {
+    "push": "deploy.py --push-src",
+    "pull": "deploy.py --pull-src"
+  }
+}

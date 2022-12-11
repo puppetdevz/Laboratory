@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--定义 Service1 的 bean 对象-->
+    <!--由于 Service1 和 Service2 是 DiAutowireByName 的内部静态类，所以要注意 class 值的格式：$-->
+    <bean id="service2" class="top.puppetdev.demo.DiAutowireByTypeExtend$Service1">
+        <!-- Setter 方式注入 -->
+        <property name="desc" value="service2"/>
+    </bean>
+
+    <!--定义 Service2 的 bean 对象-->
+    <bean id="service2" class="top.puppetdev.demo.DiAutowireByTypeExtend$Service2">
+        <!-- Setter 方式注入 -->
+        <property name="desc" value="service2"/>
+    </bean>
+
+    <!-- autowire：byType 配置按照 type 进行自动注入 -->
+    <bean id="diAutowireByTypeExtend" class="top.puppetdev.demo.DiAutowireByTypeExtend" autowire="byType"/>
+</beans>

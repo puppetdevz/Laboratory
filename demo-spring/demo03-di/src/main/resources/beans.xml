@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 通过构造器参数的索引注入 -->
+    <bean id="beanShowDiByConstructorParamIndex" class="top.puppetdev.demo.UserModel">
+        <constructor-arg index="0" value="puppet"/>
+        <constructor-arg index="1" value="18"/>
+        <constructor-arg index="2" value="我是通过构造器参数位置注入的"/>
+    </bean>
+
+    <!-- 通过构造器参数的类型注入 -->
+    <bean id="beanShowDiByConstructorParamType" class="top.puppetdev.demo.UserModel">
+        <!-- 不需要按照构造器的入参顺序 -->
+        <constructor-arg type="int" value="18"/>
+        <constructor-arg type="java.lang.String" value="puppet"/>
+        <constructor-arg type="java.lang.String" value="我是通过构造器参数类型注入的"/>
+    </bean>
+
+    <!-- 通过构造器参数的名称注入 -->
+    <bean id="beanShowDiByConstructorParamName" class="top.puppetdev.demo.CarModel">
+        <constructor-arg name="desc" value="我是通过构造器参数名称注入的"/>
+        <constructor-arg name="name" value="奥迪A7"/>
+    </bean>
+
+    <bean id="beanShowDiBySetter" class="top.puppetdev.demo.MenuModel">
+        <property name="label" value="Spring"/>
+    </bean>
+
+    <bean id="beanShowDiOtherBeans" class="top.puppetdev.demo.PersonModel">
+        <constructor-arg index="0" ref="beanShowDiByConstructorParamName"/>
+        <constructor-arg index="1">
+            <bean class="top.puppetdev.demo.UserModel">
+                <property name="age" value="18"/>
+                <property name="desc" value="我是通过Setter方法注入的"/>
+                <property name="name" value="puppet"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+</beans>
