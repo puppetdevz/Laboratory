@@ -24,6 +24,8 @@
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
+**/.idea/**/gradle.xml
+**/.idea/**/libraries
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
@@ -115,7 +117,6 @@ hs_err_pid*
 # custom ignore files
 .idea
 **/target
-**/*.iml
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -127,9 +128,16 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+**/.idea/modules.xml
+**/.idea/jarRepositories.xml
+**/.idea/compiler.xml
+**/.idea/libraries/
 *.iws
 *.iml
 *.ipr
+**/*.iws
+**/*.iml
+**/*.ipr
 
 ### Eclipse ###
 .apt_generated
@@ -153,5 +161,51 @@ build/
 ### VS Code ###
 .vscode/
 
-### Mac OS ###
+*.java.hsp
+*.sonarj
+*.sw*
 .DS_Store
+.settings
+.springBeans
+bin
+build.sh
+integration-repo
+ivy-cache
+jxl.log
+jmx.log
+derby.log
+spring-test/test-output/
+.gradle
+argfile*
+pom.xml
+activemq-data/
+
+classes/
+/build
+buildSrc/build
+/spring-*/build
+/spring-core/graalvm/build
+/spring-core/kotlin-coroutines/build
+/framework-bom/build
+/framework-docs/build
+/integration-tests/build
+/src/asciidoc/build
+target/
+
+# Eclipse artifacts, including WTP generated manifests
+.classpath
+.project
+spring-*/src/main/java/META-INF/MANIFEST.MF
+
+# IDEA artifacts and output dirs
+*.iml
+*.ipr
+*.iws
+.idea
+out
+test-output
+atlassian-ide-plugin.xml
+.gradletasknamecache
+
+# VS Code
+.vscode/
