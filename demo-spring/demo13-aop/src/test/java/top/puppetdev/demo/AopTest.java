@@ -9,6 +9,8 @@ import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import top.puppetdev.demo.demo01.UserService;
 import top.puppetdev.demo.demo02.FundsService;
+import top.puppetdev.demo.demo02.IService;
+import top.puppetdev.demo.demo02.MyService;
 import top.puppetdev.demo.demo02.SendMsgThrowsAdvice;
 
 import java.lang.reflect.Method;
@@ -86,5 +88,48 @@ public class AopTest {
         // 通过代理工厂创建代理
         FundsService proxy = (FundsService) proxyFactory.getProxy();
         proxy.withdrawal("木偶", 2000);
+    }
+
+    @Test
+    public void testGetProxyObjectInfo() {
+        ProxyFactory proxyFactory = new ProxyFactory();
+        proxyFactory.setTarget(new FundsService());
+        proxyFactory.addAdvisor(new DefaultPointcutAdvisor(new MethodBeforeAdvice() {
+            @Override
+            public void before(Method method, Object[] args, Object target) throws Throwable {
+                System.out.println(method);
+            }
+        }));
+        // 创建代理对象
+        Object proxy = proxyFactory.getProxy();
+        System.out.println("the type of proxy object is [" + proxy.getClass() + "]");
+        System.out.println("the parent class of proxy object is [" + proxy.getClass().getSuperclass() + "]");
+        System.out.println("the interfaces implemented by proxy object are: ");
+        for (Class<?> anInterface : proxy.getClass().getInterfaces()) {
+            System.out.println("    " + anInterface);
+        }
+    }
+
+    @Test
+    public void testProxiedByJdkDynamicProxy() {
+        IService myService = new MyService();
+        ProxyFactory proxyFactory = new ProxyFactory();
+        // 设置被代理的对象
+        proxyFactory.setTarget(myService);
+        // 设置需要代理的接口
+        proxyFactory.setInterfaces(IService.class);
+        // proxyFactory.setProxyTargetClass(true);
+        proxyFactory.addAdvice((MethodBeforeAdvice) (method, args, target) -> System.out.println(method));
+
+        // 创建代理对象
+        IService proxy = ((IService) proxyFactory.getProxy());
+        System.out.println("the type of proxy object is [" + proxy.getClass() + "]");
+        System.out.println("the parent class of proxy object is [" + proxy.getClass().getSuperclass() + "]");
+        System.out.println("the interfaces implemented by proxy object are: ");
+        for (Class<?> anInterface : proxy.getClass().getInterfaces()) {
+            System.out.println("    " + anInterface);
+        }
+
+        proxy.say("aop");
     }
 }
