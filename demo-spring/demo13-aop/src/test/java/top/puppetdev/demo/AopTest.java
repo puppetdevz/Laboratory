@@ -5,13 +5,17 @@ import org.springframework.aop.ClassFilter;
 import org.springframework.aop.MethodBeforeAdvice;
 import org.springframework.aop.MethodMatcher;
 import org.springframework.aop.Pointcut;
+import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import top.puppetdev.demo.demo01.UserService;
 import top.puppetdev.demo.demo02.FundsService;
 import top.puppetdev.demo.demo02.IService;
 import top.puppetdev.demo.demo02.MyService;
 import top.puppetdev.demo.demo02.SendMsgThrowsAdvice;
+import top.puppetdev.demo.demo03.MainConfig;
+import top.puppetdev.demo.demo04.MyAspect;
 
 import java.lang.reflect.Method;
 
@@ -131,5 +135,38 @@ public class AopTest {
         }
 
         proxy.say("aop");
+    }
+
+    @Test
+    public void testProxyFactoryBeanSimpleUsage() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig.class);
+        // 获取代理对象，代理对象 bean 的名称为注册 ProxyFactoryBean 的名称，即：myServiceProxy
+        top.puppetdev.demo.demo03.MyService bean = context.getBean("myServiceProxy", top.puppetdev.demo.demo03.MyService.class);
+        System.out.println("----------------------");
+        // 调用代理的方法
+        bean.m1();
+        System.out.println("----------------------");
+        // 调用代理的方法
+        bean.m2();
+    }
+
+    @Test
+    public void testAspectJProxyFactorySimpleUsage() {
+        try {
+            // 创建目标对象 myService
+            top.puppetdev.demo.demo04.MyService myService = new top.puppetdev.demo.demo04.MyService();
+            // 创建 AspectJProxyFactory 对象
+            AspectJProxyFactory proxyFactory = new AspectJProxyFactory();
+            // 设置被代理的目标对象
+            proxyFactory.setTarget(myService);
+            // 设置标注了 @Aspect 注解的类
+            proxyFactory.addAspect(MyAspect.class);
+            // 生成代理对象
+            top.puppetdev.demo.demo04.MyService proxy = proxyFactory.getProxy();
+            proxy.m1();
+            proxy.m2();
+        } catch (Exception e) {
+
+        }
     }
 }
