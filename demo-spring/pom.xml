@@ -24,6 +24,7 @@
         <module>demo13-aop</module>
         <module>demo14-async</module>
         <module>demo15-schedule</module>
+        <module>demo16-spel</module>
     </modules>
 
     <properties>
