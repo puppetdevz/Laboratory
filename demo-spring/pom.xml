@@ -23,6 +23,7 @@
         <module>demo12-beanfactory-extend</module>
         <module>demo13-aop</module>
         <module>demo14-async</module>
+        <module>demo15-schedule</module>
     </modules>
 
     <properties>
