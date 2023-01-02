@@ -22,7 +22,6 @@ import java.util.List;
  * @since 2023/1/2 17:51
  */
 @ComponentScan
-@Configuration
 @EnableCaching  // 开启 Spring 缓存功能
 public class MainConfig {
     // 自定义 Spring 中的 CacheManager，底层使用 Redis 来作为缓存存储介质
