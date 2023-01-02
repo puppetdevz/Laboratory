@@ -35,7 +35,8 @@ public class MainConfig {
     // 通过 redis.yml 配置文件创建一个 RedissonClient 用于和 Redis 进行交互
     @Bean
     public RedissonClient redissonClient() throws IOException {
-        InputStream inputStream = this.getClass().getResourceAsStream("redis.yml");
+        // 注意配置文件路径的写法
+        InputStream inputStream = this.getClass().getResourceAsStream("/redis.yml");
         Config config = Config.fromYAML(inputStream);
         return Redisson.create(config);
     }
