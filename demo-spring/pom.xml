@@ -18,7 +18,7 @@
         <module>demo07-annotation</module>
         <module>demo08-bean-lifecycle</module>
         <module>demo09-father-son-container</module>
-        <module>demo10-internetionalization</module>
+        <module>demo10-internationalization</module>
         <module>demo11-event</module>
         <module>demo12-beanfactory-extend</module>
         <module>demo13-aop</module>
@@ -26,6 +26,7 @@
         <module>demo15-schedule</module>
         <module>demo16-spel</module>
         <module>demo17-cache</module>
+        <module>demo18-jdbctemplate</module>
     </modules>
 
     <properties>
