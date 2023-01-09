@@ -27,6 +27,7 @@
         <module>demo16-spel</module>
         <module>demo17-cache</module>
         <module>demo18-jdbctemplate</module>
+        <module>demo19-transaction</module>
     </modules>
 
     <properties>
