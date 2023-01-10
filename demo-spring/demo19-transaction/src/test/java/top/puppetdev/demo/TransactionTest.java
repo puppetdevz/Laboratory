@@ -3,6 +3,7 @@ package top.puppetdev.demo;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -10,6 +11,8 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.support.TransactionTemplate;
+import top.puppetdev.demo.demo01.MainConfig;
+import top.puppetdev.demo.demo01.SubjectService;
 
 
 /**
@@ -82,5 +85,22 @@ public class TransactionTest {
             jdbcTemplate.update("insert into subject (name) values (?)", "transactionTemplate-2");
         });
         System.out.println("after: " + jdbcTemplate.queryForList("SELECT * from subject"));
+    }
+
+    @Test
+    public void testTransactional() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.register(MainConfig.class);
+        context.refresh();
+
+        SubjectService subjectServiceService = context.getBean(SubjectService.class);
+        // 先执行插入操作
+        int count = subjectServiceService.insertBatch(
+                "java高并发系列",
+                "mysql系列",
+                "maven系列");
+        System.out.println("插入成功（条）：" + count);
+        // 然后查询一下
+        System.out.println(subjectServiceService.subjectList());
     }
 }

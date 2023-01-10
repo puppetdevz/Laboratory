@@ -38,7 +38,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <!-- 该命令用于指定生成的class文件将保证和哪个版本的虚拟机进行兼容，maven中执行编译的时候会用到这个配置，默认是1.5，这个相当于javac命令后面的-target参数 -->
         <maven.compiler.target>17</maven.compiler.target>
-        <spring.version>5.3.22</spring.version>
+        <spring.version>5.3.24</spring.version>
         <lombok.version>1.18.24</lombok.version>
         <junit.version>4.13.2</junit.version>
     </properties>
