@@ -1,7 +1,12 @@
 package top.puppetdev.demo.demo02;
 
+import org.springframework.context.annotation.AdviceMode;
+import org.springframework.context.annotation.AdviceModeImportSelector;
+import org.springframework.context.annotation.AutoProxyRegistrar;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -52,4 +57,5 @@ public class TxService {
             System.out.println("方法回滚");
         }
     }
+
 }
