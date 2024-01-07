@@ -257,6 +257,7 @@ atlassian-ide-plugin.xml
 *.ilk
 *.map
 *.exp
+*.tlog
 
 # Precompiled Headers
 *.gch
